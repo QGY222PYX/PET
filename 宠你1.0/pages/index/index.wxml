@@ -1,0 +1,16 @@
+<view class="container">
+  <!-- 中央操作区 -->
+  <view class="action-area">
+    <button class="take-photo-btn" bindtap="chooseImage" data-source="camera">📸 拍照</button>
+    <button class="album-btn" bindtap="chooseImage" data-source="album">🖼️ 相册</button>
+  </view>
+
+  <!-- 图片预览区 -->
+  <view class="preview-area">
+    <image wx:if="{{imagePath}}" src="{{imagePath}}" mode="aspectFit"></image>
+    <text wx:else class="preview-tip" style="position: relative; left: 184rpx; top: 1rpx">请选择或拍摄宠物图片</text>
+  </view>
+
+  <!-- 提交按钮 -->
+  <button class="submit-btn" bindtap="submitImage" disabled="{{!imageValid}}">提交识别</button>
+</view>

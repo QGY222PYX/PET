@@ -1,0 +1,22 @@
+.page-container {
+  min-height: 100vh;
+  background-color: #FFFFFF;
+  font-family: 'PingFang SC', 'Microsoft YaHei', sans-serif;
+}
+
+/* 全局字体颜色 */
+.text-primary {
+  color: #333333;
+}
+.text-secondary {
+  color: #666666;
+}
+.text-placeholder {
+  color: #999999;
+}
+
+/* 全局按钮禁用样式 */
+button[disabled] {
+  opacity: 0.6;
+  cursor: not-allowed;
+}

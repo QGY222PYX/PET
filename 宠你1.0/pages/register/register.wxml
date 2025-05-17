@@ -1,0 +1,19 @@
+<view class="container">
+  <!-- 手机号输入框 -->
+  <input class="input" type="number" placeholder="请输入手机号" bindblur="checkPhone" value="{{phone}}"/>
+
+  <!-- 验证码输入框 -->
+  <view class="code-container">
+    <input class="input" type="number" placeholder="请输入验证码" bindblur="checkCode" value="{{code}}"/>
+    <button class="code-btn" bindtap="getCode" disabled="{{!phoneValid}}">验证码</button>
+  </view>
+
+  <!-- 用户名输入框 -->
+  <input class="input" placeholder="请输入昵称" bindblur="checkUsername" value="{{username}}"/>
+
+  <!-- 密码输入框 -->
+  <input class="input" type="password" placeholder="请输入8-12位密码，包含数字和大小写字母" bindblur="checkPassword" value="{{password}}"/>
+
+  <!-- 注册按钮 -->
+  <button class="register-btn" bindtap="handleRegister" disabled="{{!formValid}}">注册</button>
+</view>"}}}

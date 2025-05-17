@@ -1,0 +1,78 @@
+<view class="container">
+  <!-- 顶部图标 -->
+  <view class="logo-container">
+    <image class="logo" src="../../images/logo.png" mode="aspectFit" style="height: 350rpx; display: block; box-sizing: border-box; width: 404rpx"></image>
+  </view>
+  
+  <!-- 登录按钮 -->
+  <view class="button-container">
+    <button 
+      class="login-button {{isAgreed ? 'active' : 'disabled'}}" 
+      bindtap="showAuthModal"
+      disabled="{{!isAgreed}}" style="position: relative; left: 0rpx; top: -220rpx">
+      微信授权手机号登录
+    </button>
+  </view>
+  
+  <!-- 协议勾选 -->
+  <view class="agreement-container">
+    <checkbox-group bindchange="onAgreeChange">
+      <label class="agreement-label">
+        <checkbox value="agreed" checked="{{isAgreed}}" color="#00C851"/>
+        <text class="agreement-text">已阅读并同意<text class="agreement-link">《用户服务协议》</text>和<text class="agreement-link">《隐私政策》</text></text>
+      </label>
+    </checkbox-group>
+  </view>
+</view>
+
+<!-- 授权弹窗 -->
+<view class="modal-mask" wx:if="{{showAuthModal}}" bindtap="closeAuthModal"></view>
+<view class="modal-container" wx:if="{{showAuthModal}}">
+  <view class="modal-content">
+    <view class="modal-title">获取手机号</view>
+    
+    <!-- 微信绑定号码 -->
+    <view class="phone-info" wx:if="{{!usingOtherPhone}}">
+      <text>135****2908 微信绑定号码</text>
+    </view>
+    
+    <!-- 其他手机号登录 -->
+    <view class="other-phone-container" wx:if="{{usingOtherPhone}}">
+      <view class="phone-input-container">
+        <input 
+          type="number" 
+          placeholder="请输入手机号" 
+          class="phone-input"
+          bindinput="onPhoneInput"
+          value="{{inputPhone}}"/>
+      </view>
+      
+      <view class="verify-code-container">
+        <input 
+          type="number" 
+          placeholder="请输入验证码" 
+          class="verify-code-input"
+          bindinput="onVerifyCodeInput"
+          value="{{verifyCode}}"/>
+        <button 
+          class="get-code-button"
+          bindtap="getVerifyCode"
+          disabled="{{countdown > 0}}">
+          {{countdown > 0 ? countdown + 's后重试' : '获取验证码'}}
+        </button>
+      </view>
+    </view>
+    
+    <!-- 切换选项 -->
+    <view class="switch-option" wx:if="{{!usingOtherPhone}}">
+      <text class="switch-text" bindtap="switchToOtherPhone">使用其他手机号码</text>
+    </view>
+    
+    <!-- 按钮区域 -->
+    <view class="modal-buttons">
+      <button class="cancel-button" bindtap="closeAuthModal">取消</button>
+      <button class="confirm-button" wx:if="{{!usingOtherPhone}}" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">允许</button>
+      <button class="confirm-button" wx:if="{{usingOtherPhone}}" bindtap="phoneLogin">登录</button>
+    </view>
+  </view>
+</view>  

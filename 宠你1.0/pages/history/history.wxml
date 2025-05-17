@@ -1,0 +1,64 @@
+<view class="container">
+  <!-- 搜索栏 -->
+  <view class="search-bar">
+    <icon type="search" size="16" class="search-icon" />
+    <input 
+      class="search-input" 
+      placeholder="搜索宠物名称、状态或场景" 
+      bindinput="onSearchInput"
+      value="{{searchText}}"
+    />
+    <view class="filter-btn" bindtap="onFilterTap">
+      <text>筛选</text>
+    </view>
+  </view>
+
+  <!-- 记录列表 -->
+  <scroll-view 
+    scroll-y 
+    class="records-list"
+    bindscrolltolower="onLoadMore"
+    enable-flex
+    refresher-enabled="{{true}}"
+    bindrefresherrefresh="onPullDownRefresh"
+  >
+    <block wx:for="{{records}}" wx:key="id">
+      <view class="record-item" bindtap="onItemTap" data-id="{{item.id}}">
+        <view class="record-info">
+          <view class="record-header">
+            <view class="pet-info">
+              <text class="pet-name">{{item.petName}}</text>
+              <text class="pet-breed">{{item.petType}} - {{item.petBreed}}</text>
+            </view>
+            <text class="timestamp">{{item.timestamp}}</text>
+          </view>
+          
+          <text class="description">{{item.description}}</text>
+          
+          <view class="details">
+            <view class="vital-signs" wx:if="{{item.vitalSigns}}">
+              <text class="vital-item">体温: {{item.vitalSigns.temperature}}°C</text>
+              <text class="vital-item">心率: {{item.vitalSigns.heartRate}}次/分</text>
+              <text class="vital-item">呼吸: {{item.vitalSigns.respirationRate}}次/分</text>
+            </view>
+            
+            <view class="tags">
+              <text class="tag emotion">{{item.emotionalState}}</text>
+              <text class="tag scene">{{item.scene}}</text>
+              <text class="tag lighting">{{item.lighting}}</text>
+            </view>
+            
+            <view class="activities" wx:if="{{item.activities}}">
+              <text class="activity-tag" wx:for="{{item.activities}}" wx:key="*this" wx:for-item="activity">{{activity}}</text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </block>
+    
+    <view wx:if="{{loading}}" class="loading">加载中...</view>
+    <view wx:if="{{records.length === 0}}" class="empty-state">
+      <text>暂无历史记录</text>
+    </view>
+  </scroll-view>
+</view> 

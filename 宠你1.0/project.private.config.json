@@ -1,0 +1,25 @@
+{
+  "appid": "wx327d22f3da9b57d5",
+  "libVersion": "3.8.4",
+  "projectname": "%E5%AE%A0%E4%BD%A0",
+  "setting": {
+    "urlCheck": true,
+    "coverView": true,
+    "lazyloadPlaceholderEnable": false,
+    "skylineRenderEnable": false,
+    "preloadBackgroundData": false,
+    "autoAudits": false,
+    "showShadowRootInWxmlPanel": true,
+    "compileHotReLoad": true,
+    "useApiHook": true,
+    "useApiHostProcess": true,
+    "useStaticServer": false,
+    "useLanDebug": false,
+    "showES6CompileOption": false,
+    "checkInvalidKey": true,
+    "ignoreDevUnusedFiles": true,
+    "bigPackageSizeSupport": false
+  },
+  "cloudfunctionRoot": "cloudfunctions/",
+  "cloudenv": "cloud1-9gsrrnz51c89064a"
+}
